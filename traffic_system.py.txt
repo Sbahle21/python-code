@@ -1,0 +1,61 @@
+# Simple Traffic Licensing System (Python CLI)
+
+vehicles = []
+
+def add_vehicle():
+    owner = input("Enter owner name: ")
+    vehicle = input("Enter vehicle model: ")
+    license_no = input("Enter license number: ")
+
+    record = {
+        "owner": owner,
+        "vehicle": vehicle,
+        "license": license_no
+    }
+
+    vehicles.append(record)
+    print("✅ Vehicle added successfully!\n")
+
+def view_vehicles():
+    if not vehicles:
+        print("No records found.\n")
+        return
+    
+    for v in vehicles:
+        print(f"Owner: {v['owner']}, Vehicle: {v['vehicle']}, License: {v['license']}")
+    print()
+
+def search_vehicle():
+    license_no = input("Enter license number to search: ")
+    
+    for v in vehicles:
+        if v["license"] == license_no:
+            print("✅ Record Found:")
+            print(v)
+            return
+    
+    print("❌ Record not found.\n")
+
+def menu():
+    while True:
+        print("==== Traffic Licensing System ====")
+        print("1. Add Vehicle")
+        print("2. View Vehicles")
+        print("3. Search Vehicle")
+        print("4. Exit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            add_vehicle()
+        elif choice == "2":
+            view_vehicles()
+        elif choice == "3":
+            search_vehicle()
+        elif choice == "4":
+            print("Exiting system...")
+            break
+        else:
+            print("Invalid option.\n")
+
+menu()
